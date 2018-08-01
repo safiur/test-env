@@ -18,10 +18,8 @@ def call(body)
    body.delegate = config
    body()
    timestamps {
-     try {
            def git = new git()
            git.Checkout("${config.GIT_URL}","${BRANCH}","${config.GIT_CREDENTIALS}")
- 	 }
-    }	
-}
+    }
+}	
 
