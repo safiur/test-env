@@ -19,7 +19,7 @@ def call(body)
    body()
    timestamps {
      try {
-        def ruby = new JavaStack()
+        def ruby = new RubyOnRails()
         ruby.createReportDirectory("${config.REPORT_DIRECTORY}")
         def html = new htmlReport()
         currentBuild.result = "SUCCESS"
@@ -49,8 +49,8 @@ def call(body)
                  while (NEXT_STAGE != "Java_best_practice") {
                    continue
                  }
-                 ruby.javaBestPractices("${config.REPORT_DIRECTORY}")
-//                 html.publishHtmlReport("${config.RUBY_REPORT_FILE}","${config.REPORT_DIRECTORY}","${config.RUBY_REPORT_TITLE}")
+/*                 ruby.javaBestPractices("${config.REPORT_DIRECTORY}")
+                 html.publishHtmlReport("${config.RUBY_REPORT_FILE}","${config.REPORT_DIRECTORY}","${config.RUBY_REPORT_TITLE}")
                  NEXT_STAGE="rubocop"
               },
               "\u2461 Static Analysis" : {
@@ -118,8 +118,6 @@ def call(body)
        stage('\u2779 Post-Build Tasks') {
          parallel (
            "\u2460 Deploy Package" : {
-             def deploy = new JavaAppDeployment()
-             deploy.deployRubyCode("${LINUX_CREDENTIALS}","${config.LINUX_USER}", "${DEPLOYMENT_SERVERS}", "${ENVIRONMENT}", "${config.BRAND_NAME}", "${config.DEPLOYMENT_SCRIPT}")
              NEXT_STAGE='send_alert'
            },
            "\u2461 Deployment Alert" : {
