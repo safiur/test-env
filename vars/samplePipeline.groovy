@@ -24,20 +24,6 @@ def call(body)
         def html = new htmlReport()
         currentBuild.result = "SUCCESS"
         NEXT_STAGE = "none"
-/*        branch_name = new ChoiceParameterDefinition('BRANCH', ['development','staging'] as String[],'')
-        value = input(message: 'Please select specified inputs', parameters: [branch_name])
-        if(value == 'development') {
-               LINUX_CREDENTIALS = 'FCA-DEV-R1'
-               DEPLOYMENT_SERVERS = '13.55.48.235'
-	       ENVIRONMENT = 'development'
-               BRANCH = 'development'
-        }
-	if(value == 'staging') {
-               LINUX_CREDENTIALS = 'FCA-TEST-R1'
-               DEPLOYMENT_SERVERS = '13.210.243.111'
-	       ENVIRONMENT = 'staging'
-	       BRANCH = 'staging'
-	}*/
         stage ('\u2776 Code Checkout') {
            def git = new git()
            git.Checkout("${config.GIT_URL}","${BRANCH}","${config.GIT_CREDENTIALS}")
@@ -49,7 +35,7 @@ def call(body)
                  while (NEXT_STAGE != "Java_best_practice") {
                    continue
                  }
-/*                 ruby.javaBestPractices("${config.REPORT_DIRECTORY}")
+                 ruby.javaBestPractices("${config.REPORT_DIRECTORY}")
                  html.publishHtmlReport("${config.RUBY_REPORT_FILE}","${config.REPORT_DIRECTORY}","${config.RUBY_REPORT_TITLE}")
                  NEXT_STAGE="rubocop"
               },
@@ -92,28 +78,6 @@ def call(body)
                }
                NEXT_STAGE='clean_package'
             },
-            "\u2461 Clean Package" : {
-               while (NEXT_STAGE != "clean_package") {
-                 continue
-               }
-               ruby.cleanBuildPackage("${config.BRAND_NAME}","${config.BUILD_PACKAGE_DIRECTORY}")
-               NEXT_STAGE='create_package'
-            },
-            "\u2462 Create Package" : {
-               while (NEXT_STAGE != "create_package") {
-                 continue
-               }
-               ruby.createRubyPackage("${config.BRAND_NAME}","${config.BUILD_PACKAGE_DIRECTORY}")
-               NEXT_STAGE='copy_package'
-           },
-           "\u2463 Copy Package" : {
-             while (NEXT_STAGE != "copy_package") {
-                continue
-             }
-             ruby.copyBuildPackage("${config.BRAND_NAME}","${config.BUILD_PACKAGE_DIRECTORY}","${LINUX_CREDENTIALS}","${config.DEPLOYMENT_PACKAGE_DIRECTORY}", "${DEPLOYMENT_SERVERS}", "${config.LINUX_USER}")
-           },   
-           failFast: true
-         )
        }
        stage('\u2779 Post-Build Tasks') {
          parallel (
