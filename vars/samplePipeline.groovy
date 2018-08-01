@@ -19,7 +19,7 @@ def call(body)
    body()
    timestamps {
      try {
-        def ruby = new RubyOnRails()
+        def ruby = new JavaStack()
         ruby.createReportDirectory("${config.REPORT_DIRECTORY}")
         def html = new htmlReport()
         currentBuild.result = "SUCCESS"
