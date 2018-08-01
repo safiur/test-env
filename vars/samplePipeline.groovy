@@ -80,9 +80,6 @@ def call(body)
             },
        stage('\u2779 Post-Build Tasks') {
          parallel (
-           "\u2460 Deploy Package" : {
-             NEXT_STAGE='send_alert'
-           },
            "\u2461 Deployment Alert" : {
              while (NEXT_STAGE != 'send_alert') {
                continue
@@ -90,10 +87,6 @@ def call(body)
              def e = new email()
              e.sendDeployEmail("${config.BRAND_NAME}","${ENVIRONMENT}")
            },
-           failFast: true
-         )
-       }
-     }
      catch (Exception caughtError) {
         wrap([$class: 'AnsiColorBuildWrapper']) {
             print "\u001B[41mERROR => symantec pipeline failed, check detailed logs..."
