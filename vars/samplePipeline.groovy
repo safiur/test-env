@@ -78,7 +78,6 @@ def call(body)
                }
                NEXT_STAGE='clean_package'
             },
-       }
        stage('\u2779 Post-Build Tasks') {
          parallel (
            "\u2460 Deploy Package" : {
