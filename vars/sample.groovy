@@ -5,11 +5,11 @@
 **** version     :: 1.0                                               ****
 **************************************************************************/
 import com.symantec.devops.scm.*
-/import com.symantec.devops.build.ruby.*/
-/import com.symantec.devops.reports.*/
-/import com.symantec.devops.notification.*/
-/import com.symantec.devops.deploy.*/
-/import com.symantec.devops.approval.*/
+import com.symantec.devops.build.java.*
+import com.symantec.devops.reports.*
+import com.symantec.devops.notification.*
+//import com.symantec.devops.deploy.*
+//import com.symantec.devops.approval.*
 
 def call(body) 
 {
@@ -24,7 +24,7 @@ def call(body)
         def html = new htmlReport()
         currentBuild.result = "SUCCESS"
         NEXT_STAGE = "none"
-        branch_name = new ChoiceParameterDefinition('BRANCH', ['development','staging'] as String[],'')
+/*        branch_name = new ChoiceParameterDefinition('BRANCH', ['development','staging'] as String[],'')
         value = input(message: 'Please select specified inputs', parameters: [branch_name])
         if(value == 'development') {
                LINUX_CREDENTIALS = 'FCA-DEV-R1'
@@ -37,20 +37,20 @@ def call(body)
                DEPLOYMENT_SERVERS = '13.210.243.111'
 	       ENVIRONMENT = 'staging'
 	       BRANCH = 'staging'
-	}
+	}*/
         stage ('\u2776 Code Checkout') {
            def git = new git()
            git.Checkout("${config.GIT_URL}","${BRANCH}","${config.GIT_CREDENTIALS}")
-           NEXT_STAGE="rails_best_practice"
+           NEXT_STAGE="Java_best_practice"
         }
 	    stage ('\u2777 Pre-Build Tasks') {
            parallel (
               "\u2460 Check Best Practice" : {
-                 while (NEXT_STAGE != "rails_best_practice") {
+                 while (NEXT_STAGE != "Java_best_practice") {
                    continue
                  }
-                 ruby.rubyBestPractices("${config.REPORT_DIRECTORY}")
-                 html.publishHtmlReport("${config.RUBY_REPORT_FILE}","${config.REPORT_DIRECTORY}","${config.RUBY_REPORT_TITLE}")
+                 ruby.javaBestPractices("${config.REPORT_DIRECTORY}")
+//                 html.publishHtmlReport("${config.RUBY_REPORT_FILE}","${config.REPORT_DIRECTORY}","${config.RUBY_REPORT_TITLE}")
                  NEXT_STAGE="rubocop"
               },
               "\u2461 Static Analysis" : {
@@ -118,7 +118,7 @@ def call(body)
        stage('\u2779 Post-Build Tasks') {
          parallel (
            "\u2460 Deploy Package" : {
-             def deploy = new RubyOnRailsDeployment()
+             def deploy = new JavaAppDeployment()
              deploy.deployRubyCode("${LINUX_CREDENTIALS}","${config.LINUX_USER}", "${DEPLOYMENT_SERVERS}", "${ENVIRONMENT}", "${config.BRAND_NAME}", "${config.DEPLOYMENT_SCRIPT}")
              NEXT_STAGE='send_alert'
            },
