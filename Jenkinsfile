@@ -1,5 +1,5 @@
 #!groovy
-@Library('fcaa-lib@master') _
+@Library('PKJEE_lib@master') _
 node {
     properties([buildDiscarder(logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '', daysToKeepStr: '2', numToKeepStr: '2'))])
     rubyPipeline_prod {
