@@ -3,8 +3,8 @@
 node {
     properties([buildDiscarder(logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '', daysToKeepStr: '2', numToKeepStr: '2'))])
     rubyPipeline_prod {
-        GIT_URL                 = 'https://del.tools.publicis.sapient.com/bitbucket/scm/fcaab/fcg-rails-fiat.com.au.git'
-        BITBUCKET_NOTIFY_URL    = 'https://del.tools.publicis.sapient.com/bitbucket/rest/build-status/1.0/commits'
+        GIT_URL                 = ''
+        BITBUCKET_NOTIFY_URL    = ''
         GIT_CREDENTIALS         = 'Git-Credentials'
         REPORT_DIRECTORY        = 'reports'
         RUBY_REPORT_FILE        = 'index.html'
@@ -17,14 +17,14 @@ node {
         RSPEC_REPORT_TITLE      = 'RSPEC TEST REPORT'
         RUBYCRITIC_REPORT_TITLE = 'RUBYCRITIC ANALYSIS REPORT'
         RUBYCRITIC_REPORT_FILE  = 'overview.html'
-        RECIPIENT               = 'richard.thompson@digitaslbi.com, barry.edwards@digitaslbi.com, stephen.smithstone@digitaslbi.com'
+        RECIPIENT               = 'pramod.s.02@gmail.com'
         EMAIL_TEMPLATE          = 'email_template'
         SKIP_UNIT_TEST          = 'yes'
         DEPLOYMENT_PACKAGE_DIRECTORY = '/app/artifacts'
-        DEPLOYMENT_SCRIPT            = '/app/scripts/fca_deploy.sh'
-        BRAND_NAME                   = 'FIAT'
-        BUILD_PACKAGE_DIRECTORY      = '/app/fca/ci/jenkins/build_packages'
-        LINUX_USER                   = 'fcadmin'
+        DEPLOYMENT_SCRIPT            = '/app/scripts/deploy.sh'
+        BRAND_NAME                   = 'DEV'
+        BUILD_PACKAGE_DIRECTORY      = '/app/DEV/ci/jenkins/build_packages'
+        LINUX_USER                   = 'admin'
     }
 }
 
