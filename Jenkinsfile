@@ -1,4 +1,5 @@
-@Library('groovy-lib')
+library('myDeliveryPipeline@master')
+library('deploy@master')
 
 myDeliveryPipeline(branch: 'master', scmUrl: 'ssh://git@myScmServer.com/repos/myRepo.git',
                    email: 'safiuremailid@gmail.com', serverPort: '8083',
