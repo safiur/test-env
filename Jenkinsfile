@@ -1,6 +1,6 @@
 library('myDeliveryPipeline@master')
 library('deploy@master')
 
-myDeliveryPipeline(branch: 'master', scmUrl: 'ssh://git@myScmServer.com/repos/myRepo.git',
+myDeliveryPipeline(branch: 'master', scmUrl: 'https://github.com/safiur/test-env.git',
                    email: 'safiuremailid@gmail.com', serverPort: '8083',
                    developmentServer: '192.168.56.101')
