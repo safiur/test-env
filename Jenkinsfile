@@ -1,4 +1,4 @@
-@Library('mypipeline-library@master') _
+@Library('mypipeline@master') _
 
 myDeliveryPipeline(branch: 'master', scmUrl: 'https://github.com/safiur/test-env.git',
                    email: 'safiuremailid@gmail.com', serverPort: '8083',
