@@ -1,4 +1,4 @@
-@Library('groovy-lib') _
+library('groovy-lib')
 
 myDeliveryPipeline(branch: 'master', scmUrl: 'https://github.com/safiur/test-env.git',
                    email: 'safiuremailid@gmail.com', serverPort: '8083',
