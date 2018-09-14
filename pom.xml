@@ -12,7 +12,7 @@
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
 <pmd-config-url>
-${location}/rulesets/pmd/2.0/pmd-2.0.xml
+target/rulesets/pmd/2.0/pmd-2.0.xml
 </pmd-config-url>
 <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
