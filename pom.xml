@@ -85,12 +85,12 @@
 </executions>
 </plugin>
 </plugins>
+</build>
 <properties>
 <pmd-config-url>
 ${location}/rulesets/pmd/2.0/pmd-2.0.xml
 </pmd-config-url>
 <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 </properties>
- </build>
 </project>
 
