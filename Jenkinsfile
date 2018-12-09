@@ -2,5 +2,6 @@
 import org.foo.scm.*
 node {
 p1 = new git()
-p1.getSCMInformation()
+var = p1.Checkout()
+println("var")
 }
