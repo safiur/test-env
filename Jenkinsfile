@@ -5,6 +5,7 @@ node {
    var {
        GIT_URL = 'https://github.com/safiur/test-env.git'
        GIT_BRANCH = 'master'
+       GIT_CREDENTIALS = 'github_credentials'
       }
   
 } 
