@@ -1,7 +1,10 @@
 @Library('my-shared-library') _
 import org.foo.scm.*
 node {
-p1 = new git()
-var = p1.Checkout()
-println("var")
+    properties([buildDiscarder(logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '', daysToKeepStr: '2', numToKeepStr: '2'))])
+    mynew_pipeline {
+       GIT_URL = ''
+       GIT_BRANCH = ''
+       GIT_CREDENTIALS = ''
+   
 }
