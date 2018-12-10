@@ -6,5 +6,5 @@ node {
        GIT_URL = ''
        GIT_BRANCH = ''
        GIT_CREDENTIALS = ''
-   
+  } 
 }
