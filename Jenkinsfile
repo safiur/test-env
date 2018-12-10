@@ -3,9 +3,8 @@ import org.foo.scm.*
 node {
     properties([buildDiscarder(logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '', daysToKeepStr: '2', numToKeepStr: '2'))])
    var {
-       GIT_URL = ''
-       GIT_BRANCH = ''
-       GIT_CREDENTIALS = ''
-}
+       GIT_URL = 'https://github.com/safiur/test-env.git'
+       GIT_BRANCH = 'master'
+      }
   
 } 
