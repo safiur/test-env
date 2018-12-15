@@ -6,7 +6,7 @@ node {
        GIT_URL = 'https://github.com/safiur/test-env.git'
        BRANCH_NAME = 'master'
        GOAL1 = 'clean'
-       GOAL2 = 'package'
+       GOAL2 = 'test'
       }
   
 } 
