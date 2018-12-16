@@ -5,7 +5,9 @@ node {
    var {
        GIT_URL = 'https://github.com/safiur/test-env.git'
        BRANCH_NAME = 'master'
-       GOAL = ['clean','test'] 
+       GOAL1 = 'clean'
+       GOAL2 = 'test'
+       GOAL3 = 'package' 
       }
   
 } 
