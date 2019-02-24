@@ -1,5 +1,13 @@
-@Library('groovy-lib') _
-
-myDeliveryPipeline(branch: 'master', scmUrl: 'https://github.com/safiur/test-env.git',
-                   email: 'safiuremailid@gmail.com', serverPort: '8083',
-                   developmentServer: '192.168.56.101')
+@Library('my-shared-library') _
+import org.foo.scm.*
+node {
+    properties([buildDiscarder(logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '', daysToKeepStr: '2', numToKeepStr: '2'))])
+   var {
+       GIT_URL = 'https://github.com/safiur/test-env.git'
+       BRANCH_NAME = 'master'
+       GOAL1 = 'clean'
+       GOAL2 = 'test'
+       GOAL3 = 'package' 
+      }
+  
+} 
